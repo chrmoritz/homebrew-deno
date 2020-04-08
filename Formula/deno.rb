@@ -5,7 +5,7 @@ class Deno < Formula
   sha256 "d2ed15722d7e114870979709bf1606e0da42ba5a3972c5838540b94909414efc"
 
   bottle do
-    cellar :any_skip_relocation
+    cellar :any_skip_relocation # test bottle build
   end
 
   depends_on "llvm" => :build
