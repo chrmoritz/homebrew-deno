@@ -3,6 +3,12 @@ class Deno < Formula
   homepage "https://deno.land/"
   url "https://github.com/denoland/deno/releases/download/v0.39.0/deno_src.tar.gz"
   sha256 "d2ed15722d7e114870979709bf1606e0da42ba5a3972c5838540b94909414efc"
+  
+  bottle do
+    cellar :any_skip_relocation
+    root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/0.39.0/"
+    sha256 "7d107670ff8c8022322dec70f44277fd86b60ab3603f5c2239e6072be38f2b7a" => :x86_64_linux
+  end
 
   depends_on "llvm" => :build
   depends_on "ninja" => :build
