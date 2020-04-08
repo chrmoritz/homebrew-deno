@@ -4,10 +4,6 @@ class Deno < Formula
   url "https://github.com/denoland/deno/releases/download/v0.39.0/deno_src.tar.gz"
   sha256 "d2ed15722d7e114870979709bf1606e0da42ba5a3972c5838540b94909414efc"
 
-  bottle do
-    cellar :any_skip_relocation # test bottle build
-  end
-
   depends_on "llvm" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
@@ -33,15 +29,6 @@ class Deno < Formula
     end
     ENV.prepend_path "PATH", buildpath/"pypyshim"
 
-    # Build gn from source (used as a build tool here)
-    #(buildpath/"gn").install resource("gn")
-    #cd "gn" do
-    #  system Formula["pypy"].opt_bin/"pypy", "build/gen.py"
-    #  system "ninja", "-C", "out/", "gn"
-    #end
-
-    # env args for building a release build with our clang, ninja and gn
-    #ENV["GN"] = buildpath/"gn/out/gn"
     # build rusty_v8 from source
     ENV["V8_FROM_SOURCE"] = "1"
     # overwrite Chromium minimum sdk version of 10.15
