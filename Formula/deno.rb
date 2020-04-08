@@ -34,14 +34,14 @@ class Deno < Formula
     ENV.prepend_path "PATH", buildpath/"pypyshim"
 
     # Build gn from source (used as a build tool here)
-    (buildpath/"gn").install resource("gn")
-    cd "gn" do
-      system Formula["pypy"].opt_bin/"pypy", "build/gen.py"
-      system "ninja", "-C", "out/", "gn"
-    end
+    #(buildpath/"gn").install resource("gn")
+    #cd "gn" do
+    #  system Formula["pypy"].opt_bin/"pypy", "build/gen.py"
+    #  system "ninja", "-C", "out/", "gn"
+    #end
 
     # env args for building a release build with our clang, ninja and gn
-    ENV["GN"] = buildpath/"gn/out/gn"
+    #ENV["GN"] = buildpath/"gn/out/gn"
     # build rusty_v8 from source
     ENV["V8_FROM_SOURCE"] = "1"
     # overwrite Chromium minimum sdk version of 10.15
