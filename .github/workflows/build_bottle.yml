@@ -17,6 +17,7 @@ jobs:
       - name: Setup tap
         run: |
           rm -rf $(brew --repository ${{github.repository}})
+          mkdir -p $(brew --repository)/Library/Taps/chrmoritz
           ln -s $GITHUB_WORKSPACE $(brew --repository ${{github.repository}})
       - name: Build bottles
         run: |
