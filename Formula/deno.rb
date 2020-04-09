@@ -6,7 +6,7 @@ class Deno < Formula
   
   bottle do
     cellar :any_skip_relocation
-    root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/0.39.0"
+    root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/bottles"
     sha256 "7d107670ff8c8022322dec70f44277fd86b60ab3603f5c2239e6072be38f2b7a" => :x86_64_linux
   end
 
