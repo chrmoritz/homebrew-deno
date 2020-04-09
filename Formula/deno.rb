@@ -18,12 +18,6 @@ class Deno < Formula
   depends_on "xz" => :build
   depends_on "glib"
 
-  # Use older revision on Linux, newer does not work.
-  resource "gn" do
-    url "https://gn.googlesource.com/gn.git",
-      :revision => "fd3d768bcfd44a8d9639fe278581bd9851d0ce3a"
-  end
-
   def install
     # build gn with llvm clang too (g++ is too old)
     ENV["CXX"] = Formula["llvm"].opt_bin/"clang++"
