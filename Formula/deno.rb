@@ -3,7 +3,7 @@ class Deno < Formula
   homepage "https://deno.land/"
   url "https://github.com/denoland/deno/releases/download/v0.39.0/deno_src.tar.gz"
   sha256 "d2ed15722d7e114870979709bf1606e0da42ba5a3972c5838540b94909414efc"
-  
+
   bottle do
     cellar :any_skip_relocation
     root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/bottles"
@@ -17,12 +17,6 @@ class Deno < Formula
   depends_on "rust" => :build
   depends_on "xz" => :build
   depends_on "glib"
-
-  # Use older revision on Linux, newer does not work.
-  resource "gn" do
-    url "https://gn.googlesource.com/gn.git",
-      :revision => "fd3d768bcfd44a8d9639fe278581bd9851d0ce3a"
-  end
 
   def install
     # build gn with llvm clang too (g++ is too old)
