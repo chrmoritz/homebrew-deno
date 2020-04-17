@@ -25,7 +25,6 @@ jobs:
           cd ~/bottles
           brew test-bot \
             --tap=chrmoritz/homebrew-deno \
-            --keep-old \
             --root-url=https://github.com/chrmoritz/homebrew-deno/releases/download/bottles
       - name: Copy bottles
         if: always()
