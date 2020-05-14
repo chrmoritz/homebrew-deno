@@ -1,13 +1,13 @@
 class Deno < Formula
   desc "Command-line JavaScript / TypeScript engine"
   homepage "https://deno.land/"
-  url "https://github.com/denoland/deno/releases/download/v0.41.0/deno_src.tar.gz"
-  sha256 "8f42201d9242384629d419fc584bfe2385035d96937ee1cafd702ce4b06253c4"
+  url "https://github.com/denoland/deno/releases/download/v1.0.0/deno_src.tar.gz"
+  sha256 "89709f489e4cbbcfd6913d14e903fcb47c92f329d077477190b0dbd8bd23acc7"
 
   bottle do
     root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/bottles"
     cellar :any_skip_relocation
-    sha256 "51b485dc4f9e3c52e514e74ff6304e3c1491d6499ffe13c0a5568bec4bee5df6" => :x86_64_linux
+    sha256 "7bd4f586c5f8879e04c14eab019f4703192fcb374189473b82463b557ae7bb69" => :x86_64_linux
   end
 
   depends_on "llvm" => :build
@@ -54,7 +54,7 @@ class Deno < Formula
     EOS
     hello = shell_output("#{bin}/deno run hello.ts")
     assert_includes hello, "hello deno"
-    cat = shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std/examples/cat.ts #{testpath}/hello.ts")
+    cat = shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std@0.50.0/examples/cat.ts #{testpath}/hello.ts")
     assert_includes cat, "console.log"
   end
 end
