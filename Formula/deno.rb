@@ -1,13 +1,13 @@
 class Deno < Formula
   desc "Command-line JavaScript / TypeScript engine"
   homepage "https://deno.land/"
-  url "https://github.com/denoland/deno/releases/download/v1.0.0/deno_src.tar.gz"
-  sha256 "89709f489e4cbbcfd6913d14e903fcb47c92f329d077477190b0dbd8bd23acc7"
+  url "https://github.com/denoland/deno/releases/download/v1.0.1/deno_src.tar.gz"
+  sha256 "9e5bcb5eb3f49cb3fdd26f431b0c6f0a72c4bdf950cbb7ded422ba4b2bee35c7"
 
   bottle do
     root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/bottles"
     cellar :any_skip_relocation
-    sha256 "7bd4f586c5f8879e04c14eab019f4703192fcb374189473b82463b557ae7bb69" => :x86_64_linux
+    sha256 "a5a739024073396983c8972b87d5e28a6b9048bebec79a14973b158219d57ee7" => :x86_64_linux
   end
 
   depends_on "llvm" => :build
