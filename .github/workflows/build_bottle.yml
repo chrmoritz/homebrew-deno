@@ -10,7 +10,7 @@ jobs:
     if: startsWith(github.event.pull_request.title, 'Merge') == false
     runs-on: ubuntu-latest
     container:
-      image: homebrew/brew
+      image: homebrew/brew:2.4.8
     steps:
       - name: Checkout tap
         uses: actions/checkout@v2
