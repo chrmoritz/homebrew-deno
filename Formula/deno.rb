@@ -42,9 +42,9 @@ class Deno < Formula
     end
 
     # Install bash and zsh completion
-    output = Utils.popen_read("#{bin}/deno completions bash")
+    output = Utils.safe_popen_read("#{bin}/deno completions bash")
     (bash_completion/"deno").write output
-    output = Utils.popen_read("#{bin}/deno completions zsh")
+    output = Utils.safe_popen_read("#{bin}/deno completions zsh")
     (zsh_completion/"_deno").write output
   end
 
@@ -54,7 +54,8 @@ class Deno < Formula
     EOS
     hello = shell_output("#{bin}/deno run hello.ts")
     assert_includes hello, "hello deno"
-    cat = shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std@0.50.0/examples/cat.ts #{testpath}/hello.ts")
-    assert_includes cat, "console.log"
+    assert_match "console.log",
+      shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std@0.50.0/examples/cat.ts " \
+                   "#{testpath}/hello.ts")
   end
 end
