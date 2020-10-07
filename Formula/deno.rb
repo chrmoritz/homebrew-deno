@@ -35,6 +35,7 @@ class Deno < Formula
     ENV["FORCE_MAC_SDK_MIN"] = "10.13"
     # build with llvm and link against system libc++ (no runtime dep)
     ENV["CLANG_BASE_PATH"] = Formula["llvm"].prefix
+    ENV["DENO_BUILD_ARGS"] = "use_sysroot=false use_glib=false"
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["llvm"].opt_lib
 
     cd "cli" do
