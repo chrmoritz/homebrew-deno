@@ -16,7 +16,6 @@ class Deno < Formula
   depends_on "pypy" => :build
   depends_on "rust" => :build
   depends_on "xz" => :build
-  depends_on "binutils"
   depends_on "glib"
 
   def install
@@ -36,7 +35,7 @@ class Deno < Formula
     ENV["FORCE_MAC_SDK_MIN"] = "10.13"
     # build with llvm and link against system libc++ (no runtime dep)
     ENV["CLANG_BASE_PATH"] = Formula["llvm"].prefix
-    ENV["GN_ARGS"] = "use_sysroot=false use_glib=false use_gold=true"
+    ENV["GN_ARGS"] = "use_sysroot=false use_glib=false"
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["llvm"].opt_lib
 
     cd "cli" do
