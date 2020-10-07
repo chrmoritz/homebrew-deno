@@ -1,8 +1,8 @@
 class Deno < Formula
   desc "Command-line JavaScript / TypeScript engine"
   homepage "https://deno.land/"
-  url "https://github.com/denoland/deno/releases/download/v1.0.1/deno_src.tar.gz"
-  sha256 "9e5bcb5eb3f49cb3fdd26f431b0c6f0a72c4bdf950cbb7ded422ba4b2bee35c7"
+  url "https://github.com/denoland/deno/releases/download/v1.4.4/deno_src.tar.gz"
+  sha256 "43e0a03c59065fe9fb1eeec98eb35d327897a3bb0f54c164513e90adeae0ecef"
 
   bottle do
     root_url "https://github.com/chrmoritz/homebrew-deno/releases/download/bottles"
@@ -35,6 +35,7 @@ class Deno < Formula
     ENV["FORCE_MAC_SDK_MIN"] = "10.13"
     # build with llvm and link against system libc++ (no runtime dep)
     ENV["CLANG_BASE_PATH"] = Formula["llvm"].prefix
+    ENV["GN_ARGS"] = "use_sysroot=false use_glib=false"
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["llvm"].opt_lib
 
     cd "cli" do
@@ -42,9 +43,9 @@ class Deno < Formula
     end
 
     # Install bash and zsh completion
-    output = Utils.popen_read("#{bin}/deno completions bash")
+    output = Utils.safe_popen_read("#{bin}/deno completions bash")
     (bash_completion/"deno").write output
-    output = Utils.popen_read("#{bin}/deno completions zsh")
+    output = Utils.safe_popen_read("#{bin}/deno completions zsh")
     (zsh_completion/"_deno").write output
   end
 
@@ -54,7 +55,8 @@ class Deno < Formula
     EOS
     hello = shell_output("#{bin}/deno run hello.ts")
     assert_includes hello, "hello deno"
-    cat = shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std@0.50.0/examples/cat.ts #{testpath}/hello.ts")
-    assert_includes cat, "console.log"
+    assert_match "console.log",
+      shell_output("#{bin}/deno run --allow-read=#{testpath} https://deno.land/std@0.50.0/examples/cat.ts " \
+                   "#{testpath}/hello.ts")
   end
 end
