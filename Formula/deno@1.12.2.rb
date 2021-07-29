@@ -35,7 +35,7 @@ class DenoAT1122 < Formula
 
   def install
     # deno still looks only for a python binary
-    #ENV.prepend_path "PATH", Formula["python@3.9"].libexec/"bin"
+    # ENV.prepend_path "PATH", Formula["python@3.9"].libexec/"bin"
     ENV["PYTHON"] = Formula["python@3.9"].opt_bin/"python3"
     # Overwrite Chromium minimum SDK version of 10.15
     on_macos do
