@@ -116,6 +116,8 @@ class V8AT9223022 < Formula
     }
 
     on_linux do
+      ENV["AR"] = which("ar")
+      ENV["NM"] = which("nm")
       gn_args[:is_clang] = false # use GCC on Linux
       gn_args[:use_sysroot] = false # don't use sysroot
       gn_args[:custom_toolchain] = "\"//build/toolchain/linux/unbundle:default\"" # uses system toolchain
